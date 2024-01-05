@@ -24,7 +24,6 @@ export const getAll = async (req, res) => {
 			'user',
 			'fullName email avatarUrl'
 		)
-
 		res.json(posts)
 	} catch (err) {
 		console.log(err)

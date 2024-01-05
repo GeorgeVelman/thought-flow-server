@@ -15,7 +15,9 @@ import { checkAuth, handleValidationErrors } from './utils/index.js'
 
 import { PostController, UserController } from './controllers/index.js'
 mongoose
-	.connect(process.env.MONGODB_URL)
+	.connect(
+		'mongodb+srv://admin:villpgh2001@cluster0.ojanfqm.mongodb.net/blog?retryWrites=true&w=majority'
+	)
 	.then(() => console.log('Db ok'))
 	.catch(err => console.log('DB error', err))
 
@@ -58,7 +60,7 @@ app.post(
 )
 
 app.get('/auth/me', checkAuth, UserController.getMe)
-
+app.get('/users', UserController.getAll)
 app.post('/upload', checkAuth, upload.single('image'), (req, res) => {
 	res.json({
 		url: `/uploads/${req.file.originalname}`,
